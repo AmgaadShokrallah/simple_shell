@@ -1,19 +1,22 @@
 #include "shell.h"
+
 /**
  * handle_cntrl -function to handle cntrl c
- * @n: parametercd 
+ * @n: parametercd
  */
 void handle_cntrl(int n)
 {
 	(void)n;
 	write(STDOUT_FILENO, "\n$ ", _strlen("\n$ "));
 }
+
 /**
- * prompt - shell program 
- * @arv: parameter1
+ * prompt - shell program
+ * @argv: parameter1
  * @env: parameter2
  * @flag: parameter3
  */
+
 void prompt(char **argv, char **env, bool flag)
 {
 	size_t num = 0;
@@ -46,7 +49,7 @@ void prompt(char **argv, char **env, bool flag)
 			m++;
 			r[m] = strtok(NULL, " \n");
 		}
-		runcommand(r, argv, env); 
+		runcommand(r, argv, env);
 	}
 	free(command);
 }

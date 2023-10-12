@@ -1,10 +1,12 @@
 #include "shell.h"
+
 /**
  * handle_path - handle the path function
  * @argv: parameter1
  * @command: parameter2
  * Return: command for execute
  */
+
 char *handle_path(char *argv[], char *command)
 {
 	char *handl_path;

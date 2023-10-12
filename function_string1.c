@@ -23,10 +23,10 @@ int _strncmp(char *str1, char *str2, int n)
 }
 
 /**
- * _strncat - Concantenates two strings 
+ * _strncat - Concantenates two strings.
  * @dest: parameter1
  * @src: Parameter2
- * @n: number of bytes 
+ * @n: number of bytes
  *
  * Return: Pointer
  */
