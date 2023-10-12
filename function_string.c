@@ -8,11 +8,11 @@
  */
 int _strlen(char *s)
 {
-	int l = 0;
+	int lenght = 0;
 
-	while (s[l])
-		l++;
-	return (l);
+	while (s[lenght])
+		lenght++;
+	return (lenght);
 }
 
 /**
@@ -23,19 +23,21 @@ int _strlen(char *s)
  * Return: negative if str1 lower than str2, positive if
  * str1 great than str2, 0 if strings are equal
  */
+
 int _strcmp(char *str1, char *str2)
 {
-	while (*str1 && *str2)
+	int c;
+
+	c = (int)*str1 - (int)*str2;
+	while (*str1)
 	{
 		if (*str1 != *str2)
-			return (*str1 - *str2);
+			break;
 		str1++;
 		str2++;
+		c = (int)*str1 - (int)*str2;
 	}
-	if (*str1 == *str2)
-		return (0);
-	else
-		return (*str1 < *str2 ? -1 : 1);
+	return (c);
 }
 
 
@@ -46,12 +48,13 @@ int _strcmp(char *str1, char *str2)
  *
  * Return: pointer
  */
+
 char *_strcat(char *dest, char *src)
 {
 	char *ptr = dest;
 
 	while (*ptr)
-		p++;
+		ptr++;
 	while (*src)
 	{
 		*ptr = *src;
@@ -59,8 +62,7 @@ char *_strcat(char *dest, char *src)
 		src++;
 	}
 
-	*ptr = *src;
-
+	*ptr = '\0';
 	return (dest);
 }
 
@@ -73,16 +75,18 @@ char *_strcat(char *dest, char *src)
 char *_strdup(const char *str)
 {
 	int lenght = 0;
+	int i;
 	char *p;
 
 	if (str == NULL)
 		return (NULL);
-	while (*str++)
-		length++;
+	while (str[lenght])
+		lenght++;
+
 	p = malloc(sizeof(char) * (lenght + 1));
-	if (!p)
+	if (p == NULL)
 		return (NULL);
-	for (length++; length--;)
-		p[length] = *--str;
+	for (i = 0; i <= lenght; i++)
+		p[i] = str[i];
 	return (p);
 }

@@ -2,33 +2,21 @@
 
 /**
  * ffree - frees a string
- * @a: parameter
+ * @array: parameter
  */
 
-void ffree(char **a)
+void ffree(char **array)
 {
 	int i;
 
-	if (a == NULL)
+	if (array == NULL)
 		return;
 
-	for (i = 0; arr[i]; i++)
+	for (i = 0; array[i]; i++)
 	{
-		free(a[i]);
-		a[i] = NULL;
+		free(array[i]);
+		array[i] = NULL;
 	}
 
-	free(a);
-	a = NULL;
-}
-
-/**
- * print_prompt - prints the prompt
- *
- * Return: always void.
- */
-
-void print_prompt(void)
-{
-	write(STDOUT_FILENO, "$ ", 2);
+	free(array), array = NULL;
 }
