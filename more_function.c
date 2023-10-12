@@ -1,22 +1,26 @@
 #include "shell.h"
-
 /**
- * ffree - frees a string
- * @array: parameter
+ * rmc - function to remove space
+ * @command: parameter
+ * Return: command
  */
-
-void ffree(char **array)
+char *rmc(char *command)
 {
-	int i;
+	char *rmcommand;
+	int i = 0, len;
 
-	if (array == NULL)
-		return;
-
-	for (i = 0; array[i]; i++)
+	while (command[i] == ' ')
+		i++;
+	len = _strlen(command) - i + 1;
+	rmcommand = malloc(len + 1);
+	if (rmcommand == NULL)
 	{
-		free(array[i]);
-		array[i] = NULL;
+		perror("Allocation Failed\n");
+		return (NULL);
 	}
-
-	free(array), array = NULL;
+	_strncpy(rmcommand, command + i, len);
+	rmcommand[len] = '\0';
+	_strcpy(command, rmcommand);
+	free(rmcommand);
+	return (command);
 }

@@ -1,32 +1,36 @@
 #include "shell.h"
-
 /**
- * main - main function
- * @argc: parameter1
+ * runcmd - a function that run command
+ * @rgv: parameter1
  * @argv: parameter2
- * Return: void
+ * @env: parameter3
  */
-int main(int argc, char **argv)
+void runcommand(char **command, char *argv[], char **environ)
 {
-	char *line = NULL;
-	char **com = NULL;
-	int status = 0;
-	(void) argc;
+	pid_t child_pid;
+	int status;
 
-	while (1)
+	child_pid = fork();
+
+	if (child_pid == -1)
 	{
-		line = get_line();
-		if (line == NULL)
+		perror("Error");
+		exit(EXIT_FAILURE);
+	}
+	if (child_pid == 0)
+	{
+
+		if (execve(command[0], command, environ) == (-1))
 		{
-			if (isatty(STDIN_FILENO))
-				write(STDOUT_FILENO, "\n", 1);
-			return (status);
+			write(STDOUT_FILENO, argv[0], _strlen(argv[0]));
+			/**write(STDOUT_FILENO, ": No such file or directory",
+			_strlen(": No such file or directory"));*/
+			write(STDOUT_FILENO, "\n", 1);
 		}
-
-		com = tokeniz(line);
-		if (com == NULL)
-			continue;
-
-		status = _execute(com, argv);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		wait(&status);
 	}
 }

@@ -1,92 +1,87 @@
+
 #include "shell.h"
 
 /**
- * _strlen - return the length of string
- * @s: parameter
- *
- * Return: length of string
- */
-int _strlen(char *s)
-{
-	int lenght = 0;
-
-	while (s[lenght])
-		lenght++;
-	return (lenght);
-}
-
-/**
- * _strcmp - compares two strings character by character.
+ * _strcmp - compares two strings
  * @str1: parameter1
  * @str2: parameter2
- *
- * Return: negative if str1 lower than str2, positive if
- * str1 great than str2, 0 if strings are equal
+ * Return: val
  */
-
 int _strcmp(char *str1, char *str2)
 {
-	int c;
+	int c = 0;
 
-	c = (int)*str1 - (int)*str2;
-	while (*str1)
+	while (*str1 == *str2 && *str1 != '\0')
 	{
-		if (*str1 != *str2)
-			break;
 		str1++;
 		str2++;
-		c = (int)*str1 - (int)*str2;
 	}
+	if (str1 != str2)
+		c = *str1 - *str2;
+
 	return (c);
 }
 
-
 /**
- * _strcat - concatenates two strings
+ * _strncpy - copies char
  * @dest: parameter1
  * @src: parameter2
- *
- * Return: pointer
+ * @n: int argument
+ * Return: dest
  */
-
-char *_strcat(char *dest, char *src)
+char *_strncpy(char *dest, char *src, int n)
 {
-	char *ptr = dest;
+	int j;
 
-	while (*ptr)
-		ptr++;
-	while (*src)
+	for (j = 0; j < n && src[j] != '\0'; j++)
 	{
-		*ptr = *src;
-		ptr++;
-		src++;
+		dest[j] = src[j];
 	}
-
-	*ptr = '\0';
+	for (; j < n; j++)
+	{
+		dest[j] = '\0';
+	}
 	return (dest);
 }
 
 /**
- * _strdup - function duplicate string
- * @str: parameter
- *
- * Return: pointer
+ * _strcat - This function concatenates two strings
+ * @dest: string agument
+ * @src: string argument
+ * Return: String
  */
-char *_strdup(const char *str)
+char *_strcat(char *dest, char *src)
 {
-	int lenght = 0;
-	int i;
-	char *p;
+	int lenght = 0, l = 0, i;
 
-	if (str == NULL)
-		return (NULL);
-	while (str[lenght])
+	while (src[lenght] != '\0')
+	{
 		lenght++;
+	}
+	while (dest[l] != '\0')
+	{
+		l++;
+	}
+	for (i = 0; i < lenght; i++)
+	{
+		dest[l + i] = src[i];
+	}
+	dest[l + lenght] = '\0';
+	return (dest);
+}
 
-	p = malloc(sizeof(char) * (lenght + 1));
-	if (p == NULL)
-		return (NULL);
-	for (i = 0; i <= lenght; i++)
-		p[i] = str[i];
-	return (p);
+/**
+ * _strlen - return length of a string
+ * @s: string
+ * Return: length of string
+ */
+int _strlen(char *s)
+{
+	int len = 0;
+
+	while (*(s + len) != '\0')
+	{
+		len++;
+	}
+	return (len);
 }
