@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * handle_cntrl -function to handle cntrl c
- * @n: parametercd
+ * signalHandler -this function to handle Ctrl+C
+ * @signal: parameter
  */
-void handle_cntrl(int n)
+void signalHandler(int signal)
 {
-	(void)n;
-	write(STDOUT_FILENO, "\n$ ", _strlen("\n$ "));
+        (void)signal;
+        write(STDOUT_FILENO, "\n$ ", _strlen("\n$ "));
 }
 
 /**
@@ -28,7 +28,7 @@ void prompt(char **argv, char **env, bool flag)
 	{
 		if (flag && isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "$ ", _strlen("$ "));
-		signal(SIGINT, handle_cntrl);
+		signal(SIGINT, signalHandler);
 		number = getline(&command, &num, stdin);
 		if (number == -1)
 		{
@@ -37,7 +37,7 @@ void prompt(char **argv, char **env, bool flag)
 		}
 		if (command[number - 1] == '\n')
 			command[number - 1] = '\0';
-		command = rmc(command);
+		command = rmcommand(command);
 		if (_strlen(command) == 0)
 			continue;
 		m = 0;
@@ -49,7 +49,7 @@ void prompt(char **argv, char **env, bool flag)
 			m++;
 			r[m] = strtok(NULL, " \n");
 		}
-		runcommand(r, argv, env);
+		_execute(r, argv, env);
 	}
 	free(command);
 }

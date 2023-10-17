@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * runcommand - the function that run command
+ * _execute - the function that run command
  * @command: parameter1
  * @argv: parameter2
  * @environ: parameter3
  */
-void runcommand(char **command, char *argv[], char **environ)
+void _execute(char **command, char *argv[], char **environ)
 {
 	pid_t child_pid;
 	int status;

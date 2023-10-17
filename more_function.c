@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
- * rmc - function to remove space
+ * rmcommand - function to remove space
  * @command: parameter
  * Return: command
  */
-char *rmc(char *command)
+char *rmcommand(char *command)
 {
 	char *rmcommand;
 	int i = 0, len;

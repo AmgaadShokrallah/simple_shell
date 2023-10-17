@@ -22,9 +22,9 @@ int _strlen(char *s);
 char *_strncpy(char *dest, char *src, int n);
 char *handle_path(char *argv[], char *command);
 void handle_exit(char *cmd);
-void runcommand(char **command, char *argv[], char **environ);
-char *rmc(char *command);
-char *get_path(char *cmd);
+void _execute(char **command, char *argv[], char **environ);
+char *rmcommand(char *command);
+char *get_path(char *commandd);
 char *_getenv(char *string);
 
 
