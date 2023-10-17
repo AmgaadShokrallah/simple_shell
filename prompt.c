@@ -4,10 +4,11 @@
  * signalHandler -this function to handle Ctrl+C
  * @signal: parameter
  */
+
 void signalHandler(int signal)
 {
-        (void)signal;
-        write(STDOUT_FILENO, "\n$ ", _strlen("\n$ "));
+	(void)signal;
+	write(STDOUT_FILENO, "\n$ ", _strlen("\n$ "));
 }
 
 /**
