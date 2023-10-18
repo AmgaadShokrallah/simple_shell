@@ -16,7 +16,7 @@ void _execute(char **command, char *argv[], char **environ)
 	if (child_pid == -1)
 	{
 		perror("Error");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	if (child_pid == 0)
 	{
@@ -25,7 +25,7 @@ void _execute(char **command, char *argv[], char **environ)
 			write(STDOUT_FILENO, argv[0], _strlen(argv[0]));
 			write(STDOUT_FILENO, "\n", 1);
 		}
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	else
 	{

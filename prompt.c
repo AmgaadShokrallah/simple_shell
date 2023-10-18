@@ -22,7 +22,7 @@ void prompt(char **argv, char **env, bool f)
 		if (number == -1)
 		{
 			free(command);
-			exit(0);
+			exit(1);
 		}
 		if (command[number - 1] == '\n')
 			command[number - 1] = '\0';
