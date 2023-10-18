@@ -13,7 +13,7 @@ char *rmcommand(char *command)
 		i++;
 	len = _strlen(command) - i + 1;
 	rmcommand = malloc(len + 1);
-	if (rmcommand == NULL)
+	if (!rmcommand)
 	{
 		perror("Failed\n");
 		return (NULL);
