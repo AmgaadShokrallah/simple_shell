@@ -11,7 +11,7 @@ void prompt(char **argv, char **env, bool f)
 {
 	size_t num = 0;
 	ssize_t number = 0;
-	int m;
+	int m = 0;
 	char *command = NULL, *r[INT_MAX];
 
 	while (true)
@@ -22,18 +22,18 @@ void prompt(char **argv, char **env, bool f)
 		if (number == -1)
 		{
 			free(command);
-			exit(EXIT_SUCCESS);
+			exit(0);
 		}
 		if (command[number - 1] == '\n')
 			command[number - 1] = '\0';
 		command = rmcommand(command);
 		if (_strlen(command) == 0)
 			continue;
-		m = 0;
+
 		r[m] = strtok(command, " \n");
 		exit_handler(command);
 		path_handler(r, command);
-		while (r[m])
+		while (r[m] != NULL)
 		{
 			m++;
 			r[m] = strtok(NULL, " \n");
