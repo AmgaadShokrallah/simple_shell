@@ -4,18 +4,19 @@
  * prompt - shell program
  * @argv: parameter1
  * @env: parameter2
+ * @f: parameter3
  */
 
-void prompt(char **argv, char **env)
+void prompt(char **argv, char **env, bool f)
 {
 	size_t num = 0;
 	ssize_t number = 0;
-	char *command = NULL, *r[INT_MAX];
 	int m;
+	char *command = NULL, *r[INT_MAX];
 
 	while (true)
 	{
-		if (isatty(STDIN_FILENO))
+		if (f && isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "$ ", _strlen("$ "));
 		number = getline(&command, &num, stdin);
 		if (number == -1)
