@@ -15,7 +15,7 @@ char *rmcommand(char *command)
 	rmcommand = malloc(len + 1);
 	if (rmcommand == NULL)
 	{
-		perror("Allocation Failed\n");
+		perror("Failed\n");
 		return (NULL);
 	}
 	_strncpy(rmcommand, command + i, len);

@@ -1,24 +1,12 @@
 #include "shell.h"
 
 /**
- * signalHandler -this function to handle Ctrl+C
- * @signal: parameter
- */
-
-void signalHandler(int signal)
-{
-	(void)signal;
-	write(STDOUT_FILENO, "\n$ ", _strlen("\n$ "));
-}
-
-/**
  * prompt - shell program
  * @argv: parameter1
  * @env: parameter2
- * @flag: parameter3
  */
 
-void prompt(char **argv, char **env, bool flag)
+void prompt(char **argv, char **env)
 {
 	size_t num = 0;
 	ssize_t number = 0;
@@ -27,9 +15,8 @@ void prompt(char **argv, char **env, bool flag)
 
 	while (true)
 	{
-		if (flag && isatty(STDIN_FILENO))
+		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "$ ", _strlen("$ "));
-		signal(SIGINT, signalHandler);
 		number = getline(&command, &num, stdin);
 		if (number == -1)
 		{
@@ -43,8 +30,8 @@ void prompt(char **argv, char **env, bool flag)
 			continue;
 		m = 0;
 		r[m] = strtok(command, " \n");
-		handle_exit(command);
-		handle_path(r, command);
+		exit_handler(command);
+		path_handler(r, command);
 		while (r[m])
 		{
 			m++;

@@ -14,14 +14,14 @@
 
 extern char **environ;
 
-void prompt(char **argv, char **env, bool flag);
+void prompt(char **argv, char **env);
 int _strcmp(char *str1, char *str2);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 int _strlen(char *s);
-char *_strncpy(char *dest, char *src, int n);
-char *handle_path(char *argv[], char *command);
-void handle_exit(char *cmd);
+char *_strncpy(char *dest, char *source, int n);
+char *path_handler(char *argv[], char *command);
+void exit_handler(char *command);
 void _execute(char **command, char *argv[], char **environ);
 char *rmcommand(char *command);
 char *get_path(char *commandd);

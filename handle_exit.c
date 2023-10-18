@@ -1,11 +1,12 @@
 #include "shell.h"
 
 /**
- * handle_exit - function to exit.
+ * exit_handler - function to exit.
  * @command: parameter
  * Return: void.
  */
-void handle_exit(char *command)
+
+void exit_handler(char *command)
 {
 	if (_strcmp("exit", command) == 0)
 	{
