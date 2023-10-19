@@ -18,7 +18,7 @@ char *path_handler(char *argv[], char *command)
 	}
 	_strcpy(handl_path, "/bin/");
 
-	if (command[0] != '/' && command[0] != '.')
+	if (command[0] != '.' && command[0] != '/')
 	{
 		argv[0] = _strcat(handl_path, command);
 		return (argv[0]);

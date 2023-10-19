@@ -4,6 +4,7 @@
  * @command: parameter
  * Return: command
  */
+
 char *rmcommand(char *command)
 {
 	char *rmcommand;
